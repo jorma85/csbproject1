@@ -27,3 +27,6 @@ class bankAdmin(admin.ModelAdmin):
         )
 
         return TemplateResponse(request, "admin/thebankler.html", context)
+#@admin.register(Message)
+#class messageAdmin(admin.ModelAdmin):
+
