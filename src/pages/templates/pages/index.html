@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        {% load static %}
+
+        <link rel="stylesheet" type="text/css" href="{% static 'bank/style.css' %}">
+        <title>glorp transfer</title>
+    </head>
+
+
+    <body>
+		<h1>Your account</h1>
+
+        <table>
+		<tr>
+		<th style="text-align:left">Username: <td>{{user.username}} 
+		<tr>
+		<th style="text-align:left">Balance:  <td>{{user.account.balance}} glorps
+		</table>
+
+		
+        <h2>Transfer money</h2>
+        <!-- For flaw #3, change line below this comment to ##<form id='transfer' action='transfer/' method="POST">             <span>To:</span><br/>## (remove the ##, also note that this does require a restart of the application to take effect) -->
+        <form id='transfer' action='transfer/' method="GET">             <span>To:</span><br/>
+            <!-- the line below needs to also be uncommented for flaw #3 -->
+            <!--{% csrf_token %} -->
+            <select name="to">
+			{% for account in accounts %}
+                <option value="{{account.user.username}}">{{account.user.username}}</option>
+			{% endfor %}
+            </select><br/>
+
+            <span>Amount:</span><br/>
+            <input type="number" name="amount"/><br/>
+
+            <input type="submit" value="Transfer"/>
+        </form>
+        		<h1>Glorper</h1>
+
+        <table>
+		<tr>
+		<th style="text-align:left">Username: <td>{{user.username}} 
+		</table>
+
+
+        <form action='logout/' method="POST">
+			{% csrf_token %}
+            <input type="submit" value="Logout"/>
+        </form>
+		
+        <h2>Your glorps</h2>
+
+		{% for msg in messages %}
+
+		<i>From {{msg.source.username}} to {{msg.target.username}}</i></br>
+        <!-- for flaw #5, the line below needs to be changed to {{msg.content}} and nothing else needs to change (atleast to my knowledge)-->
+		{{msg.content|safe}}
+		</br>
+		</br>
+
+		{% endfor %}
+
+
+        <h2>Send a glorp</h2>
+
+        <form action='add/' method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            To:
+            <select name="to">
+            {% for account in accounts%}
+                <option value="{{account.user.username}}">{{account.user.username}}</option>
+            {% endfor %}
+            </select><br/>
+
+			<textarea name="content" cols="40" rows="5"></textarea><br/>
+            <input type="submit" value="Send"/>
+        </form>
+    </body>
+
+
+    </body>
+</html>

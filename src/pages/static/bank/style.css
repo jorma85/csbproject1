@@ -1,0 +1,7 @@
+body {
+    background: rgb(252, 2, 2) url("images/glorp.png");
+}
+
+li a {
+    color: green;
+}

@@ -1,0 +1,23 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<div id="content-main">
+<table>
+        <thead>
+            <tr>
+                <th>glorpername</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for account in accounts %}
+            <tr>
+                <td>{{ account.user.username }}</td>
+                <td>{{ account.balance }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</div>
+{% endblock %}

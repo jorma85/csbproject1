@@ -1,0 +1,12 @@
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'bank/style.css' %}">
+
+
+<h2>glorp bank & messaging</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>
