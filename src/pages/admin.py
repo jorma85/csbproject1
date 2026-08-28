@@ -16,7 +16,7 @@ class bankAdmin(admin.ModelAdmin):
                  name='bankadmin')
         ]
         return custom_urls+urls
-    #fix for Flaw #1 (broken access control), enforces the requirement to be logged in as a staff member to view this custom admin page
+    #fix for Flaw #1 (broken access control), enforces the requirement to be logged in as a staff member to view this custom admin page ps. i forgot to add the url to the admin page to the essay but it can be found in the flaw screenshots
     #@method_decorator(staff_member_required)
     def bankadmin_view(self, request):
         accounts = Account.objects.select_related('user').all()
