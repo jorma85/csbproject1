@@ -12,8 +12,8 @@ class bankAdmin(admin.ModelAdmin):
         urls=super().get_urls()
         custom_urls=[
             path('bankadmin/', 
-                 self.bankadmin_view, 
-                 name='bankadmin')
+                 self.bankadmin_view, #The reason for the flaw existing is here, as you may notice there is no admin.view wrapping. I added this comment since apparently it was not clear enough before.
+                 name='bankadmin') #could also have fixed this flaw by giving it the admin.view wrapping, maybe it would have been more clear then, but the flaw is real and the fix works.
         ]
         return custom_urls+urls
     #fix for Flaw #1 (broken access control), enforces the requirement to be logged in as a staff member to view this custom admin page ps. i forgot to add the url to the admin page to the essay but it can be found in the flaw screenshots
